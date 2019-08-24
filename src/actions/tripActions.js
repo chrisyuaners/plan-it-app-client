@@ -2,7 +2,7 @@ import { normalize, schema } from 'normalizr'
 
 function fetchTrips(userId) {
   return function(dispatch) {
-    fetch(`http://localhost:3000/api/v1/trips`, {
+    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/trips`, {
       headers: {
         "Authorization": localStorage.user_id
       }

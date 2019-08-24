@@ -1,6 +1,6 @@
 function fetchTodos(userId) {
   return function(dispatch) {
-    fetch(`http://localhost:3000/api/v1/users/${userId}`)
+    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/users/${userId}`)
     .then(res => res.json())
     .then(user => {
       dispatch({type: 'FETCH_TODOS', todos: user.trips.map(trip => {
