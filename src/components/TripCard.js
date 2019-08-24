@@ -14,7 +14,7 @@ class TripCard extends React.Component {
     const userTripId = this.props.userTrips.filter(userTrip => userTrip.trip_id === this.props.selectedTrip)[0].id
     console.log(userTripId)
 
-    fetch(`http://localhost:3000/api/v1/trips/${this.props.selectedTrip}`, {
+    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/trips/${this.props.selectedTrip}`, {
       method: "DELETE",
       headers: {
         "Content-Type": 'application/json',
@@ -72,7 +72,7 @@ class TripCard extends React.Component {
   editTrip = (event) => {
     event.preventDefault()
 
-    fetch(`http://localhost:3000/api/v1/trips/${this.props.selectedTrip}`, {
+    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/trips/${this.props.selectedTrip}`, {
       method: "PATCH",
       headers: {
         "Content-Type": 'application/json',

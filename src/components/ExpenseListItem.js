@@ -11,7 +11,7 @@ function ExpenseListItem(props) {
     }).format(value)
 
   function handleClick() {
-    fetch(`http://localhost:3000/api/v1/expenses/${props.expense.id}`, {
+    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/expenses/${props.expense.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": 'application/json',

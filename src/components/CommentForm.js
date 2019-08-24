@@ -44,7 +44,7 @@ class CommentForm extends React.Component {
     if (!this.state.newComment) {
       this.showError()
     } else {
-      fetch('http://localhost:3000/api/v1/comments', {
+      fetch('https://plan-it-app-api.herokuapp.com/api/v1/comments', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',

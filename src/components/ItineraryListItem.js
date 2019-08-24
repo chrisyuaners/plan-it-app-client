@@ -12,7 +12,7 @@ function ItineraryListItem(props) {
   const flyingTo = props.destinations.filter(destination => destination.id === flyingToId)[0]
 
   function handleClick() {
-    fetch(`http://localhost:3000/api/v1/itineraries/${props.itinerary.id}`, {
+    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/itineraries/${props.itinerary.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": 'application/json',

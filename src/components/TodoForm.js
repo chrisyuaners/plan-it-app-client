@@ -44,7 +44,7 @@ class TodoForm extends React.Component {
     if (!this.state.newTodo) {
       this.showError()
     } else {
-      fetch('http://localhost:3000/api/v1/todos', {
+      fetch('https://plan-it-app-api.herokuapp.com/api/v1/todos', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',

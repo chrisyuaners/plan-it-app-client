@@ -109,7 +109,7 @@ class ItineraryForm extends React.Component {
     if (!this.state.departure || !this.state.arrival || !this.state.address) {
       this.showError()
     } else {
-      fetch('http://localhost:3000/api/v1/itineraries', {
+      fetch('https://plan-it-app-api.herokuapp.com/api/v1/itineraries', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',

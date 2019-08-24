@@ -18,7 +18,7 @@ class ProfileEdit extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, {
+    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/users/${this.props.user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": 'application/json',
