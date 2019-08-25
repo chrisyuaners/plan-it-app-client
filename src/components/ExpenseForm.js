@@ -71,7 +71,7 @@ class ExpenseForm extends React.Component {
     if (!this.state.item || !this.state.cost || !this.state.count) {
       this.showError()
     } else {
-      fetch('http://localhost:3000/api/v1/expenses', {
+      fetch('https://plan-it-app-api.herokuapp.com/api/v1/expenses', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',
