@@ -8,7 +8,7 @@ function CommentListItem(props) {
   const author = props.users[props.comment.author_id]
 
   function handleClick() {
-    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/comments/${props.comment.id}`, {
+    fetch(`http://localhost:3000/api/v1/comments/${props.comment.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": 'application/json',
@@ -30,7 +30,7 @@ function CommentListItem(props) {
         title={author.full_name}
         description={props.comment.content}
       />
-      <Button onClick={handleClick} type="danger" icon="close" />
+      {props.editMode ? <Button onClick={handleClick} type="danger" icon="close" /> : null}
     </List.Item>
   )
 }

@@ -1,6 +1,6 @@
 function fetchExpenses(userId) {
   return function(dispatch) {
-    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/users/${userId}`)
+    fetch(`http://localhost:3000/api/v1/users/${userId}`)
     .then(res => res.json())
     .then(user => {
       dispatch({type: 'FETCH_EXPENSES', expenses: user.trips.map(trip => {

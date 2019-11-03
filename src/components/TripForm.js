@@ -60,7 +60,7 @@ class TripForm extends React.Component {
     if (!this.state.title || !this.state.description || !this.state.start_date || !this.state.end_date) {
       this.showError()
     } else {
-      fetch('https://plan-it-app-api.herokuapp.com/api/v1/trips', {
+      fetch('http://localhost:3000/api/v1/trips', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',

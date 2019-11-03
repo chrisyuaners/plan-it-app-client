@@ -7,11 +7,6 @@ function LandingPage(props) {
   return (
     <div style={{ backgroundColor: '#5d9cec', minHeight: '100vh', paddingBottom: '2%'  }}>
       <LoginForm setUser={props.setUser} loginProps={props.loginProps} />
-      <div style={{ float: 'left', padding: '1%' }}>
-        <h3>Demo:</h3>
-        <p>Username: clees</p>
-        <p>Password: 123</p>
-      </div>
       <img src="./plan-it.jpg" alt=""/>
       <div>
         <Link to={"/signup"}>

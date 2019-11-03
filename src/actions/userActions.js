@@ -9,7 +9,7 @@ function setUser(userId) {
 
 function fetchUsers() {
   return function(dispatch) {
-    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/users`, {
+    fetch(`http://localhost:3000/api/v1/users`, {
       headers: {
         "Authorization": localStorage.user_id
       }

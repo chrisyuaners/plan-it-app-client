@@ -7,7 +7,7 @@ class TripListItem extends React.Component {
     const { start_date, end_date, title, id } = this.props.trip
 
     return (
-      <List.Item style={{ paddingLeft: '3%', paddingRight: '3%' }} onClick={() => {this.props.selectTrip(id); this.props.resetDeleteMessage()}}>
+      <List.Item style={{ paddingLeft: '3%', paddingRight: '3%', cursor: 'pointer' }} onClick={() => {this.props.selectTrip(id); this.props.resetDeleteMessage()}}>
         <List.Item.Meta
           title={title}
           description={`${moment(start_date).format('LL')} - ${moment(end_date).format('LL')}`}

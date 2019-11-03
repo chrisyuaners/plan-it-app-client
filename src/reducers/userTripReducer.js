@@ -10,6 +10,14 @@ function userTripReducer(state=defaultState, action) {
       return userTripData
     case 'ADD_USER_TRIP':
       return {...state, [action.userTrip.id]: action.userTrip}
+    case 'ADD_USERS_TO_TRIP':
+      const addNewUserTrips = {}
+
+      action.users.newUserTrips.forEach(userTrip => {
+        addNewUserTrips[userTrip.id] = userTrip
+      })
+
+      return {...state, ...addNewUserTrips}
     case 'ADD_ITINERARY':
       const userTripToAddItin = {...state}
       const addItin = {...userTripToAddItin[action.newItinerary.itinerary.user_trip_id]}

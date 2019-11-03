@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd'
 
 class LoginForm extends React.Component {
   state = {
+    loading: false,
     username: '',
     password: ''
   }
@@ -16,7 +17,13 @@ class LoginForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    fetch('https://plan-it-app-api.herokuapp.com/api/v1/login', {
+    this.setState({
+      loading: true
+    })
+
+    localStorage.current = 'home'
+
+    fetch('http://localhost:3000/api/v1/login', {
       method: "POST",
       headers: {
         "Content-Type": 'application/json',
@@ -54,7 +61,7 @@ class LoginForm extends React.Component {
             <Input.Password name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" loading={this.state.loading} htmlType="submit">
               Login
             </Button>
           </Form.Item>

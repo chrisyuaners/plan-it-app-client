@@ -39,6 +39,9 @@ class ExpenseForm extends React.Component {
   hideModal = () => {
     this.setState({
       showModal: false,
+      item: '',
+      cost: null,
+      count: null
     })
   }
 
@@ -71,11 +74,11 @@ class ExpenseForm extends React.Component {
     if (!this.state.item || !this.state.cost || !this.state.count) {
       this.showError()
     } else {
-      fetch('https://plan-it-app-api.herokuapp.com/api/v1/expenses', {
+      fetch('http://localhost:3000/api/v1/expenses', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',
-          "Aceepts": 'application/json'
+          "Accepts": 'application/json'
         },
         body: JSON.stringify({
           item: this.state.item,
@@ -102,9 +105,21 @@ class ExpenseForm extends React.Component {
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
-          Add
-        </Button>
+        <div className="action-buttons">
+          <Button type="primary" onClick={this.showModal}>
+            Add
+          </Button>
+          {this.props.editMode ?
+            <Button type="primary"
+              onClick={() => this.props.setEditMode(false)}>
+              Done
+            </Button> :
+            <Button type="primary"
+              onClick={() => this.props.setEditMode(true)}>
+              Edit
+            </Button>
+          }
+        </div>
         <Modal
           title="New Expense"
           visible={this.state.showModal}
@@ -129,7 +144,7 @@ class ExpenseForm extends React.Component {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Add
+              Submit
             </Button>
           </Form.Item>
         </Form>

@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { List, Card } from 'antd'
 import { connect } from 'react-redux'
 import ItineraryListItem from '../components/ItineraryListItem'
 import ItineraryForm from '../components/ItineraryForm'
 
 function ItineraryList(props) {
-  const currentUserTrip = props.userTrips.filter(userTrip => userTrip.trip_id === props.selectedTrip)[0]
-  const userItineraries = props.itineraries.filter(itin => itin.user_trip_id === currentUserTrip.id)
+  const currentUserTrip = props.userTrips.filter(userTrip => userTrip.trip_id === props.selectedTrip)[0];
+  const userItineraries = props.itineraries.filter(itin => itin.user_trip_id === currentUserTrip.id);
+  const [editMode, setEditMode] = useState(false);
 
   function renderItineraries() {
     return (
@@ -15,10 +16,20 @@ function ItineraryList(props) {
           itemLayout="horizontal"
           dataSource={userItineraries}
           renderItem={itinerary => (
-            <ItineraryListItem key={itinerary.id} itinerary={itinerary} tripId={props.selectedTrip}/>
+            <ItineraryListItem
+              key={itinerary.id}
+              itinerary={itinerary}
+              tripId={props.selectedTrip}
+              editMode={editMode}
+            />
           )}
         />
-        <ItineraryForm tripId={props.selectedTrip} />
+        <ItineraryForm
+          key={props.selectedTrip}
+          tripId={props.selectedTrip}
+          editMode={editMode}
+          setEditMode={setEditMode}
+        />
       </Card>
     )
   }

@@ -7,6 +7,7 @@ import TodoList from './TodoList'
 import CommentList from './CommentList'
 import ItineraryList from './ItineraryList'
 import TripForm from '../components/TripForm'
+import { connect } from 'react-redux'
 import { Layout, Empty, Button, Alert, Modal } from 'antd'
 
 class TripContainer extends React.Component {
@@ -17,8 +18,10 @@ class TripContainer extends React.Component {
   }
 
   selectTrip = (tripId) => {
+    const trip = this.props.trips[tripId]
+
     this.setState({
-      selectedTrip: tripId
+      selectedTrip: trip.id
     })
   }
 
@@ -63,6 +66,7 @@ class TripContainer extends React.Component {
       <div>
         <div>
           <TripCard
+            key={this.state.selectedTrip}
             selectedTrip={this.state.selectedTrip}
             setSelectedTripToNull={this.setSelectedTripToNull}
             showDeleteMessage={this.showDeleteMessage}
@@ -147,4 +151,10 @@ class TripContainer extends React.Component {
   }
 }
 
-export default TripContainer
+const mapStateToProps = (state) => {
+  return {
+    trips: state.trips
+  }
+}
+
+export default connect(mapStateToProps)(TripContainer)

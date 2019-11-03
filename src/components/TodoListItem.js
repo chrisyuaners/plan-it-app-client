@@ -5,7 +5,7 @@ import { removeTodo } from '../actions/todoActions'
 
 function TodoListItem(props) {
   function handleClick() {
-    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/todos/${props.todo.id}`, {
+    fetch(`http://localhost:3000/api/v1/todos/${props.todo.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": 'application/json',
@@ -26,7 +26,7 @@ function TodoListItem(props) {
       <List.Item.Meta
         description={props.todo.content}
       />
-      <Button onClick={handleClick} type="danger" icon="close" />
+      {props.editMode ? <Button onClick={handleClick} type="danger" icon="close" /> : null}
     </List.Item>
   )
 }

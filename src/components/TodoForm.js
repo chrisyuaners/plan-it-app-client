@@ -44,7 +44,7 @@ class TodoForm extends React.Component {
     if (!this.state.newTodo) {
       this.showError()
     } else {
-      fetch('https://plan-it-app-api.herokuapp.com/api/v1/todos', {
+      fetch('http://localhost:3000/api/v1/todos', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',
@@ -74,9 +74,21 @@ class TodoForm extends React.Component {
           <Input name="newTodo" onChange={this.handleChange} value={this.state.newTodo}/>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Add
-          </Button>
+          <div className="action-buttons">
+            <Button type="primary" htmlType="submit">
+              Add
+            </Button>
+            {this.props.editMode ?
+              <Button type="primary"
+                onClick={() => this.props.setEditMode(false)}>
+                Done
+              </Button> :
+              <Button type="primary"
+                onClick={() => this.props.setEditMode(true)}>
+                Edit
+              </Button>
+            }
+          </div>
         </Form.Item>
       </Form>
     )

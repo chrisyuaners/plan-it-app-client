@@ -2,7 +2,7 @@ import { normalize, schema } from 'normalizr'
 
 function fetchTrips(userId) {
   return function(dispatch) {
-    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/trips`, {
+    fetch(`http://localhost:3000/api/v1/trips`, {
       headers: {
         "Authorization": localStorage.user_id
       }
@@ -34,6 +34,7 @@ function fetchTrips(userId) {
       })
       const tripList = [trip]
       const normalizedData = normalize(tripData, tripList)
+      console.log(normalizedData, trips)
       dispatch({type: 'FETCH_TRIPS', normalizedData: normalizedData})
     })
   }
@@ -60,9 +61,17 @@ function editTrip(updatedTrip) {
   }
 }
 
+function addUsersToTrip(users) {
+  return {
+    type: 'ADD_USERS_TO_TRIP',
+    users: users
+  }
+}
+
 export {
   fetchTrips,
   addTrip,
   removeTrip,
-  editTrip
+  editTrip,
+  addUsersToTrip
 }

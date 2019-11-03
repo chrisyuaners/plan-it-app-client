@@ -11,7 +11,7 @@ function ExpenseListItem(props) {
     }).format(value)
 
   function handleClick() {
-    fetch(`https://plan-it-app-api.herokuapp.com/api/v1/expenses/${props.expense.id}`, {
+    fetch(`http://localhost:3000/api/v1/expenses/${props.expense.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": 'application/json',
@@ -33,7 +33,7 @@ function ExpenseListItem(props) {
         title={props.expense.item}
         description={`${numberFormat(props.expense.cost)} x ${props.expense.count}`}
       />
-      <Button onClick={handleClick} type="danger" icon="close" />
+      {props.editMode ? <Button onClick={handleClick} type="danger" icon="close" /> : null}
     </List.Item>
   )
 }

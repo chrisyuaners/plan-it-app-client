@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TodoListItem from '../components/TodoListItem'
 import TodoForm from '../components/TodoForm'
 import { connect } from 'react-redux'
@@ -6,6 +6,7 @@ import { List, Card } from 'antd'
 
 function TodoList(props) {
   const currentTripTodos = props.trips[props.selectedTrip].todos.map(todo => props.todos[todo])
+  const [editMode, setEditMode] = useState(false);
 
   function renderTodos() {
     return (
@@ -14,10 +15,20 @@ function TodoList(props) {
           itemLayout="horizontal"
           dataSource={currentTripTodos}
           renderItem={todo => (
-            <TodoListItem key={todo.id} todo={todo} tripId={props.selectedTrip} />
+            <TodoListItem
+              key={todo.id}
+              todo={todo}
+              tripId={props.selectedTrip}
+              editMode={editMode}
+            />
           )}
         />
-        <TodoForm tripId={props.selectedTrip} />
+        <TodoForm
+          key={props.selectedTrip}
+          tripId={props.selectedTrip}
+          editMode={editMode}
+          setEditMode={setEditMode}
+        />
       </Card>
     )
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import UserListItem from '../components/UserListItem'
+import UserForm from '../components/UserForm'
 import { connect } from 'react-redux'
 import { List, Card } from 'antd'
 
@@ -17,6 +18,7 @@ function UserList(props) {
             <UserListItem key={user.id} user={user} />
           )}
         />
+        <UserForm key={props.selectedTrip} selectedTrip={props.selectedTrip} />
       </Card>
     )
   }

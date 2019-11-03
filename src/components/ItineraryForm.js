@@ -109,7 +109,7 @@ class ItineraryForm extends React.Component {
     if (!this.state.departure || !this.state.arrival || !this.state.address) {
       this.showError()
     } else {
-      fetch('https://plan-it-app-api.herokuapp.com/api/v1/itineraries', {
+      fetch('http://localhost:3000/api/v1/itineraries', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',
@@ -150,9 +150,21 @@ class ItineraryForm extends React.Component {
 
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
-          Add
-        </Button>
+        <div className="action-buttons">
+          <Button type="primary" onClick={this.showModal}>
+            Add
+          </Button>
+          {this.props.editMode ?
+            <Button type="primary"
+              onClick={() => this.props.setEditMode(false)}>
+              Done
+            </Button> :
+            <Button type="primary"
+              onClick={() => this.props.setEditMode(true)}>
+              Edit
+            </Button>
+          }
+        </div>
         <Modal
           title="New Itinerary"
           visible={this.state.showModal}

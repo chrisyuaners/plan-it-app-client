@@ -61,7 +61,7 @@ class SignupForm extends React.Component {
     const avatar = this.randomAvatar()
 
     if (this.state.password === this.state.passwordConfirmation) {
-      fetch('https://plan-it-app-api.herokuapp.com/api/v1/signup', {
+      fetch('http://localhost:3000/api/v1/signup', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json',

@@ -4,7 +4,7 @@ function unique(value, index, self) {
 
 function fetchDestinations() {
   return function(dispatch) {
-    fetch("https://plan-it-app-api.herokuapp.com/api/v1/destinations")
+    fetch("http://localhost:3000/api/v1/destinations")
       .then(res => res.json())
       .then(destinations => {
         dispatch({

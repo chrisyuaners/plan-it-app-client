@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ExpenseListItem from '../components/ExpenseListItem'
 import ExpenseForm from '../components/ExpenseForm'
 import { connect } from 'react-redux'
@@ -6,6 +6,7 @@ import { List, Card } from 'antd'
 
 function ExpenseList(props) {
   const currentTripExpenses = props.trips[props.selectedTrip].expenses.map(expense => props.expenses[expense])
+  const [editMode, setEditMode] = useState(false);
 
   const reducer = (total, expense) => total + expense
   const numberFormat = (value) =>
@@ -16,16 +17,26 @@ function ExpenseList(props) {
 
   function renderExpenses() {
     return (
-      <Card title="Expenses" style={{ width: '150%' }}>
+      <Card title="Expenses" style={{ width: '100%' }}>
         <List
           itemLayout="horizontal"
           dataSource={currentTripExpenses}
           renderItem={expense => (
-            <ExpenseListItem key={expense.id} expense={expense} tripId={props.selectedTrip} />
+            <ExpenseListItem
+              key={expense.id}
+              expense={expense}
+              tripId={props.selectedTrip}
+              editMode={editMode}
+            />
           )}
         />
         {currentTripExpenses.length > 0 ? <p>Total: {numberFormat(currentTripExpenses.map(expense => expense.cost * expense.count).reduce(reducer))}</p> : null}
-        <ExpenseForm tripId={props.selectedTrip} />
+        <ExpenseForm
+          key={props.selectedTrip}
+          tripId={props.selectedTrip}
+          editMode={editMode}
+          setEditMode={setEditMode}
+         />
       </Card>
     )
   }

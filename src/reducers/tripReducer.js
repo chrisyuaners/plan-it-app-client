@@ -34,7 +34,7 @@ function tripReducer(state = defaultState, action) {
       const updatedTrip = {
         [tripToUpdate.id]: tripToUpdate
       }
-      
+
       return {...state, ...updatedTrip}
     case 'ADD_COMMENT':
       const findTripToAddComment = {...state}
@@ -69,6 +69,18 @@ function tripReducer(state = defaultState, action) {
       }
 
       return {...state, ...updatedTripWithExpense}
+    case 'ADD_USERS_TO_TRIP':
+      const findTripToAddUsers = {...state}
+      const tripToAddUsers = {...findTripToAddUsers[action.users.tripId]}
+
+      action.users.newUsers.forEach(user => tripToAddUsers.users.push(user))
+      action.users.newUserTrips.forEach(userTrip => tripToAddUsers.user_trips.push(userTrip.id))
+
+      const updatedTripWithUsers = {
+        [tripToAddUsers.id]: tripToAddUsers
+      }
+
+      return {...state, ...updatedTripWithUsers}
     case 'REMOVE_EXPENSE':
       const findTripToRemoveExpense = {...state}
 
